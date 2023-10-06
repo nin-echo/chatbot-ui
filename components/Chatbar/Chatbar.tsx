@@ -25,6 +25,7 @@ import ChatbarContext from './Chatbar.context';
 import { ChatbarInitialState, initialState } from './Chatbar.state';
 
 import { v4 as uuidv4 } from 'uuid';
+import { INIT_MSG } from '../Chat/Constants';
 
 export const Chatbar = () => {
   const { t } = useTranslation('sidebar');
@@ -105,7 +106,7 @@ export const Chatbar = () => {
         value: {
           id: uuidv4(),
           name: t('New Conversation'),
-          messages: [],
+          messages: [INIT_MSG],
           model: OpenAIModels[defaultModelId],
           prompt: DEFAULT_SYSTEM_PROMPT,
           temperature: DEFAULT_TEMPERATURE,

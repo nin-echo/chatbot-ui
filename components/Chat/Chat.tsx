@@ -33,6 +33,7 @@ import { ModelSelect } from './ModelSelect';
 import { SystemPrompt } from './SystemPrompt';
 import { TemperatureSlider } from './Temperature';
 import { MemoizedChatMessage } from './MemoizedChatMessage';
+import { INIT_MSG } from './Constants';
 
 interface Props {
   stopConversationRef: MutableRefObject<boolean>;
@@ -307,13 +308,10 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   };
   const throttledScrollDown = throttle(scrollDown, 250);
 
-  // useEffect(() => {
-  //   console.log('currentMessage', currentMessage);
-  //   if (currentMessage) {
-  //     handleSend(currentMessage);
-  //     homeDispatch({ field: 'currentMessage', value: undefined });
-  //   }
-  // }, [currentMessage]);
+  useEffect(() => {
+    handleSend(INIT_MSG as Message, 0, null);
+  }, []);
+
 
   useEffect(() => {
     throttledScrollDown();
@@ -413,15 +411,15 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                     <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600">
                       <ModelSelect />
 
-                      <TemperatureSlider
+                      {/* <TemperatureSlider
                         label={t('Temperature')}
                         onChangeTemperature={(temperature) =>
                           handleUpdateConversation(selectedConversation, {
                             key: 'temperature',
                             value: temperature,
                           })
-                        }
-                      />
+                        } */}
+                      {/* /> */}
                     </div>
                   )}
                 </div>

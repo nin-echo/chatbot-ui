@@ -98,19 +98,6 @@ export const Chatbar = () => {
     exportData();
   };
 
-  const handleImportConversations = (data: SupportedExportFormats) => {
-    const { history, folders, prompts }: LatestExportFormat = importData(data);
-    homeDispatch({ field: 'conversations', value: history });
-    homeDispatch({
-      field: 'selectedConversation',
-      value: history[history.length - 1],
-    });
-    homeDispatch({ field: 'folders', value: folders });
-    homeDispatch({ field: 'prompts', value: prompts });
-
-    window.location.reload();
-  };
-
   const handleClearConversations = () => {
     defaultModelId &&
       homeDispatch({
@@ -212,7 +199,6 @@ export const Chatbar = () => {
         ...chatBarContextValue,
         handleDeleteConversation,
         handleClearConversations,
-        handleImportConversations,
         handleExportData,
         handlePluginKeyChange,
         handleClearPluginKey,

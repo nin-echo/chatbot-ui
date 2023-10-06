@@ -40,6 +40,4 @@ export interface ExportFormatV3 {
 export interface ExportFormatV4 {
   version: 4;
   history: Conversation[];
-  folders: FolderInterface[];
-  prompts: Prompt[];
 }
